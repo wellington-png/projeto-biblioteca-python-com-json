@@ -17,9 +17,9 @@
             "autor": 1,
             "genero": 1,
             "quantidade": 5,
-            "disponivel": 0,
+            "disponivel": 8,
             "ano": 2020,
-            "codigo": "1111",
+            "codigo": "l1",
             "is_active": true
         },
         {
@@ -28,30 +28,30 @@
             "autor": 1,
             "genero": 1,
             "quantidade": 10,
-            "disponivel": 1,
+            "disponivel": 10,
             "ano": 2000,
-            "codigo": "111111",
+            "codigo": "l2",
             "is_active": true
         }
     ],
     "cliente": [
         {
             "id": 1,
-            "matricula": "123",
+            "matricula": "c1",
             "nome": "João plc",
             "email": "wellington@email.com",
             "telefone": "999999",
             "is_active": true,
-            "quant_possivel": 3
+            "quant_possivel": 9
         },
         {
             "id": 2,
-            "matricula": "111",
+            "matricula": "c2",
             "nome": "João",
             "email": "joao@g.com",
             "telefone": "12321",
             "is_active": true,
-            "quant_possivel": 1
+            "quant_possivel": 10
         }
     ],
     "emprestimo": [
@@ -59,8 +59,28 @@
             "id": 1,
             "livro": 1,
             "cliente": 1,
-            "data_emprestimo": "2020-01-01",
-            "data_devolucao": "2020-01-31",
+            "data_emprestimo": "10/07/2022",
+            "dias_devolucao": 5,
+            "prazo": "23/07/2022",
+            "devolvido": true,
+            "data_devolucao": "18/07/2022"
+        },
+        {
+            "id": 2,
+            "livro": 2,
+            "cliente": 1,
+            "data_emprestimo": "18/07/2022",
+            "dias_devolucao": 5,
+            "prazo": "23/07/2022",
+            "devolvido": false
+        },
+        {
+            "id": 3,
+            "livro": 1,
+            "cliente": 1,
+            "data_emprestimo": "18/07/2022",
+            "dias_devolucao": 5,
+            "prazo": "23/07/2022",
             "devolvido": false
         }
     ],
