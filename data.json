@@ -1,0 +1,79 @@
+{
+    "nome": "Biblioteca IFPI",
+    "endereco": "Rua Sem nome, 3185",
+    "telefone": "12345678",
+    "email": "ifpi@gmail.com",
+    "autor": [
+        {
+            "id": 1,
+            "nome_completo": "well",
+            "is_active": true
+        }
+    ],
+    "livro": [
+        {
+            "id": 1,
+            "titulo": "nao",
+            "autor": 1,
+            "genero": 1,
+            "quantidade": 5,
+            "disponivel": 0,
+            "ano": 2020,
+            "codigo": "1111",
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "titulo": "Harry potter",
+            "autor": 1,
+            "genero": 1,
+            "quantidade": 10,
+            "disponivel": 1,
+            "ano": 2000,
+            "codigo": "111111",
+            "is_active": true
+        }
+    ],
+    "cliente": [
+        {
+            "id": 1,
+            "matricula": "123",
+            "nome": "João plc",
+            "email": "wellington@email.com",
+            "telefone": "999999",
+            "is_active": true,
+            "quant_possivel": 3
+        },
+        {
+            "id": 2,
+            "matricula": "111",
+            "nome": "João",
+            "email": "joao@g.com",
+            "telefone": "12321",
+            "is_active": true,
+            "quant_possivel": 1
+        }
+    ],
+    "emprestimo": [
+        {
+            "id": 1,
+            "livro": 1,
+            "cliente": 1,
+            "data_emprestimo": "2020-01-01",
+            "data_devolucao": "2020-01-31",
+            "devolvido": false
+        }
+    ],
+    "genero": [
+        {
+            "id": 1,
+            "nome": "Ação",
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "nome": "Nada",
+            "is_active": true
+        }
+    ]
+}
