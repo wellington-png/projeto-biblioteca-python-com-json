@@ -43,17 +43,18 @@ def emprestar_livro(data, livro, cliente, dias_para_devolucao, devolvido=False):
                     data["livro"][t]["disponivel"] -= 1
                     data["cliente"][c]["quant_possivel"] -= 1
                     write_json("data.json", data)
+                    print("Livro emprestado com sucesso!\n")
                     return data["emprestimo"][-1]
                 else:
-                    print("Cliente com livro atrasado")
+                    print("Cliente com livro atrasado\n")
             else:
-                print("Cliente ou Livro não possui quantidade disponível")
+                print("Cliente ou Livro não possui quantidade disponível\n")
                 return False
         else:
-            print("Você já emprestou esse livro!")
+            print("Você já emprestou esse livro!\n")
             return False
     else:
-        print("Livro ou cliente não encontrado!")
+        print("Livro ou cliente não encontrado!\n")
         return False
 
 
@@ -76,7 +77,7 @@ def devolver_livro(data, cod_livro, matricula):
                 write_json("data.json", data)
                 print("Livro devolvido com sucesso!")
                 return True
-    print("Livro não encontrado!")
+    print("Livro não encontrado!\n")
     return False
 
 
@@ -141,19 +142,38 @@ def listar_emprestimos_cliente(data, matricula):
                 )
             )
             print(f'{"-"*83}')
+def listar_atrazados(data):
+    print(f"\n{' Lista de emprestimos ':=^83}")
+    print(f'{"Livro":<20}{"Socio":<20}{"Data Emprestimo":<17}{"Dias Devolução":<16}{"Prazo":<7}')
+    print(f'{"-"*83}')
+    for i in data["emprestimo"]:
+        if i['devolvido'] == False:
+            if i['prazo'] < data_atual:
+                print(
+                    "{:<20}{:<20}{:^17}{:^17}{:<16}".format(
+                        data['livro'][i['livro'] - 1]['codigo'],
+                        data["cliente"][i['cliente'] - 1]["matricula"],
+                        i["data_emprestimo"],
+                        i["prazo"],
+                        'Devolvido' if i['devolvido'] else 'Pendente',
+                    )
+                )
+                print(f'{"-"*83}')
 
 
 def menu_emprestimo(data):
     print("1 - Emprestar Livro")
     print("2 - Devolver Livro")
-    print("3 - Listar Emprestimos")
-    print("4 - Listar Emprestimos Socio")
-    print("5 - Voltar")
+    print("3 - Renovar Emprestimo")
+    print("4 - Listar Emprestimos")
+    print("5 - Listar Emprestimos Socio")
+    print("6 - Listar Emprestimos Atrazados")
+    print("7 - Voltar")
     
     try:
         opcao = int(input("Digite a opção: "))
     except:
-        print("Opção inválida!")
+        print("Opção inválida! \n")
         menu_emprestimo(data)
         
     if opcao == 1:
@@ -162,10 +182,10 @@ def menu_emprestimo(data):
         try:
             dias = int(input("Digite a quantidade de dias para devolução: "))
         except ValueError:
-            print("Dias inválidos!")
+            print("Dias inválidos! \n")
             menu_emprestimo(get_json("data.json"))
         if dias <= 0:
-            print("Dias inválidos!")
+            print("Dias inválidos! \n")
             menu_emprestimo(data)
         emprestar_livro(get_json("data.json"), cod_livro, matricula, dias)
         
@@ -174,12 +194,19 @@ def menu_emprestimo(data):
         matricula = input("Digite a matricula do cliente: ")
         devolver_livro(get_json("data.json"), cod_livro, matricula)
     elif opcao == 3:
-        listar_emprestimos(get_json("data.json"))
+        matricula = input("Digite a matricula do cliente: ")
+        cod_livro = input("Digite o código do livro: ")
+        dias = int(input("Digite a quantidade de dias para devolução: "))
+        renovar_emprestimo(get_json("data.json"), matricula, cod_livro, dias)
     elif opcao == 4:
+        listar_emprestimos(get_json("data.json"))
+    elif opcao == 5:
         matricula = input("Digite a matricula do cliente: ")
         listar_emprestimos_cliente(get_json("data.json"), matricula)
-    elif opcao == 5:
+    elif opcao == 7:
         return True
+    elif opcao == 6:
+        listar_atrazados(get_json("data.json"))
     else:
         print("Opção inválida!")
         return False

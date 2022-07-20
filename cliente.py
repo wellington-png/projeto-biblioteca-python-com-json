@@ -16,7 +16,7 @@ def cadastar_cliente(data, matricula, nome, email, telefone, quant_possivel=3):
             "quant_possivel": quant_possivel,
         }
     )
-    print("Sócio cadastrado com sucesso!")
+    print("Sócio cadastrado com sucesso!\n")
     write_json("data.json", data)
     return data["cliente"][-1]
 
@@ -40,9 +40,9 @@ def atualizar_cliente(
                 quant_possivel if quant_possivel else i["quant_possivel"]
             )
             write_json("data.json", data)
-            print("Cliente atualizado com sucesso!")
+            print("Cliente atualizado com sucesso!\n")
             return data
-    print("Cliente não encontrado!")
+    print("Cliente não encontrado!\n")
     return False
 
 
@@ -88,7 +88,7 @@ def menu_socios(data):
     print("3 - Detalhes do Sócio")
     print("4 - Alterar Sócio")
     print("5 - Excluir Sócio")
-    print("6 - Voltar")
+    print("6 - Voltar\n")
     
     try:
         opcao = int(input("Digite a opção desejada: "))
