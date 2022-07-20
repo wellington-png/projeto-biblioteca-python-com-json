@@ -80,4 +80,5 @@ def menu_genero(data):
 
 
 if __name__ == "__main__":
-    cadastar_genero(get_json("data.json"), "filme")
+    # cadastar_genero(get_json("data.json"), "filme")
+    pass

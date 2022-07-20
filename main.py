@@ -8,12 +8,14 @@ data = get_json("data.json")
 
 
 def menu():
-    print("1 - Livros")
-    print("2 - Gêneros")
-    print("3 - Sócios")
-    print("4 - Autores")
-    print("5 - Emprestimos")
-    print("6 - Sair")
+    print(f'+{" Menu Principal ":-^28}+')
+    print(f'|{" 1 ":<5}{" Livro ":<23}|')
+    print(f'|{" 2 ":<5}{" Genero ":<23}|')
+    print(f'|{" 3 ":<5}{" Socios ":<23}|')
+    print(f'|{" 4 ":<5}{" Autor ":<23}|')
+    print(f'|{" 5 ":<5}{" Emprestimo ":<23}|')
+    print(f'|{" 6 ":<5}{" Sair ":<23}|')
+    print(f'+{"-"*28}+')
     
     try:
         opcao = int(input("Digite a opção desejada: "))

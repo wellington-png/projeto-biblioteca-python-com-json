@@ -29,7 +29,7 @@ def cadastrar_livro(data, titulo, autor, genero, quantidade, disponivel, ano, co
         return data
 
     if is_existe_livro(data, codigo):
-        print("Livro ja cadastrado!")
+        print("\nCodigo já cadastrado!\n")
         return data
 
     if not genero:
@@ -49,7 +49,7 @@ def cadastrar_livro(data, titulo, autor, genero, quantidade, disponivel, ano, co
             "quantidade": quantidade,
             "disponivel": disponivel,
             "ano": ano,
-            "codigo": codigo,
+            "codigo": str(codigo),
             "is_active": True,
         }
     )
@@ -69,15 +69,12 @@ def atualizar_livro(
     ano=None,
     is_active=True,
 ):
-    print(codigo)
     livro = is_existe_livro(data, codigo)
     if not livro:
         print("Livro não encontrado!")
         return data
     autor = is_existe_autor(data, autor)
     genero = is_existe_genero(data, genero)
-    print(autor)
-    print(genero)
     if not genero:
         print("Não foi possível atualizar o livro!, pois o genero ainda não existe!")
         return data
@@ -126,15 +123,15 @@ def apagar_livro(data, codigo):
 
 def listar_livro(data):
     print(
-        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<25}{'GÊNERO':<20}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
     )
-    print("-" * 90)
+    print("-" * 145)
     for i in data["livro"]:
         if i["is_active"] == True:
             print(
-                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
+                f' {i["id"]:<5}{i["titulo"]:<35}{data["autor"][i["autor"]-1]["nome_completo"]:<25}{data["genero"][i["genero"]-1]["nome"]:<20}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
-            print("-" * 90)
+            print("-" * 145)
 
     return data
 
@@ -145,15 +142,15 @@ def listar_livro_genero(data, genero):
         print("Gênero não encontrado!")
         return False
     print(
-        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<25}{'GÊNERO':<20}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
     )
-    print("-" * 90)
+    print("-" * 145)
     for i in data["livro"]:
         if i["is_active"] == True and i["genero"] == genero[1]:
             print(
-                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
+                f' {i["id"]:<5}{i["titulo"]:<35}{data["autor"][i["autor"]-1]["nome_completo"]:<25}{data["genero"][i["genero"]-1]["nome"]:<20}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
-            print("-" * 90)
+            print("-" * 145)
     return data
 
 
@@ -163,15 +160,15 @@ def listar_livro_autor(data, autor):
         print("Autor não encontrado!")
         return False
     print(
-        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<25}{'GÊNERO':<20}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
     )
-    print("-" * 90)
+    print("-" * 145)
     for i in data["livro"]:
         if i["is_active"] == True and i["autor"] == autor[1]:
             print(
-                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
+                f' {i["id"]:<5}{i["titulo"]:<35}{data["autor"][i["autor"]-1]["nome_completo"]:<25}{data["genero"][i["genero"]-1]["nome"]:<20}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
-            print("-" * 90)
+            print("-" * 145)
     return data
 
 
@@ -181,15 +178,15 @@ def livro_detalhes(data, codigo):
         print("Livro não encontrado!")
         return False
     print(
-        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<25}{'GÊNERO':<20}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
     )
-    print("-" * 90)
+    print("-" * 145)
     for i in data["livro"]:
         if i["is_active"] == True and i["id"] == livro[1]:
             print(
-                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
+                f' {i["id"]:<5}{i["titulo"]:<35}{data["autor"][i["autor"]-1]["nome_completo"]:<25}{data["genero"][i["genero"]-1]["nome"]:<20}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
-            print("-" * 90)
+            print("-" * 145)
     return data
 
 
@@ -300,9 +297,4 @@ def menu_livro(data):
 
 
 if __name__ == "__main__":
-    # cadastrar_livro(get_json('data.json'), 'senhor', 'José', 'filme', 10, 5, 2000, '12983')
-    # atualizar_livro(get_json('data.json'), '129y83', 'titulo', 'João', 'filme', 5, 2, 2000, is_active=True)
-    # apagar_livro(get_json('data.json'), '12983')
-    listar_livro(get_json("data.json"))
-    # listar_livro_genero(get_json("data.json"), "filme")
-    # listar_livro_autor(get_json("data.json"), "José")
+    pass

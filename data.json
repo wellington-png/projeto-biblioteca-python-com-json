@@ -2,103 +2,341 @@
     "nome": "Biblioteca IFPI",
     "endereco": "Rua Sem nome, 3185",
     "telefone": "12345678",
-    "email": "ifpi@gmail.com",
+    "email": "ifpi@email.com",
     "autor": [
         {
             "id": 1,
-            "nome_completo": "autor 1",
+            "nome_completo": "Patricia Johnson",
             "is_active": true
         },
         {
             "id": 2,
-            "nome_completo": "autor2",
+            "nome_completo": "James Stevenson",
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "nome_completo": "Ethan Alvarez",
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "nome_completo": "Erin Butler",
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "nome_completo": "Brandon Kennedy",
+            "is_active": true
+        },
+        {
+            "id": 6,
+            "nome_completo": "Mrs. Tanya Washington",
+            "is_active": true
+        },
+        {
+            "id": 7,
+            "nome_completo": "Mary Beasley",
+            "is_active": true
+        },
+        {
+            "id": 8,
+            "nome_completo": "Rick",
+            "is_active": true
+        },
+        {
+            "id": 9,
+            "nome_completo": "Well",
             "is_active": true
         }
     ],
     "livro": [
         {
             "id": 1,
-            "titulo": "Livro 1",
-            "autor": 1,
-            "genero": 1,
-            "quantidade": 5,
-            "disponivel": 1,
-            "ano": 2222,
-            "codigo": "liv1",
-            "is_active": true
+            "titulo": "Richard",
+            "autor": 2,
+            "genero": 4,
+            "quantidade": 4,
+            "disponivel": 3,
+            "ano": 2000,
+            "codigo": "19",
+            "is_active": false
         },
         {
             "id": 2,
-            "titulo": "livro2",
+            "titulo": "Sara Henderson",
             "autor": 2,
             "genero": 2,
-            "quantidade": 1,
-            "disponivel": 1,
-            "ano": 2222,
-            "codigo": "liv2",
+            "quantidade": 5,
+            "disponivel": 5,
+            "ano": "1976",
+            "codigo": "100",
             "is_active": true
         },
         {
             "id": 3,
-            "titulo": "livro5",
-            "autor": 2,
-            "genero": 2,
-            "quantidade": 2,
+            "titulo": "Travis Merritt",
+            "autor": 3,
+            "genero": 3,
+            "quantidade": 5,
+            "disponivel": 3,
+            "ano": "1974",
+            "codigo": "55",
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "titulo": "Amber Johnson",
+            "autor": 4,
+            "genero": 4,
+            "quantidade": 3,
+            "disponivel": 3,
+            "ano": "1999",
+            "codigo": "57",
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "titulo": "Joseph Acosta",
+            "autor": 5,
+            "genero": 5,
+            "quantidade": 4,
+            "disponivel": 2,
+            "ano": "1985",
+            "codigo": "83",
+            "is_active": true
+        },
+        {
+            "id": 6,
+            "titulo": "Robert Patterson",
+            "autor": 6,
+            "genero": 6,
+            "quantidade": 5,
             "disponivel": 1,
-            "ano": 2222,
-            "codigo": "gtt",
+            "ano": "1974",
+            "codigo": "9",
+            "is_active": true
+        },
+        {
+            "id": 7,
+            "titulo": "Mario Velasquez",
+            "autor": 7,
+            "genero": 7,
+            "quantidade": 3,
+            "disponivel": 1,
+            "ano": "1988",
+            "codigo": "73",
+            "is_active": true
+        },
+        {
+            "id": 8,
+            "titulo": "Algoritmo",
+            "autor": 8,
+            "genero": 8,
+            "quantidade": 5,
+            "disponivel": 1,
+            "ano": 2000,
+            "codigo": "78",
+            "is_active": true
+        },
+        {
+            "id": 9,
+            "titulo": "python",
+            "autor": 9,
+            "genero": 9,
+            "quantidade": 5,
+            "disponivel": 2,
+            "ano": 2000,
+            "codigo": "8888",
             "is_active": true
         }
     ],
     "cliente": [
         {
             "id": 1,
-            "matricula": "soc1",
-            "nome": "wellington",
-            "email": "welllington@gmail.com",
-            "telefone": "99999-9999",
+            "matricula": "7401610",
+            "nome": "Ronald Cherry",
+            "email": "mellis@example.com",
+            "telefone": "(578)061-2346",
+            "is_active": true,
+            "quant_possivel": 2
+        },
+        {
+            "id": 2,
+            "matricula": "6299608",
+            "nome": "Jason Heath",
+            "email": "fmiller@example.org",
+            "telefone": "615-982-1084",
+            "is_active": true,
+            "quant_possivel": 4
+        },
+        {
+            "id": 3,
+            "matricula": "3055588",
+            "nome": "Sue Mack",
+            "email": "sloanpamela@example.net",
+            "telefone": "(408)498-5511",
+            "is_active": true,
+            "quant_possivel": 3
+        },
+        {
+            "id": 4,
+            "matricula": "1408557",
+            "nome": "Miranda Frost",
+            "email": "christopherdean@example.org",
+            "telefone": "913.354.2095x741",
+            "is_active": true,
+            "quant_possivel": 2
+        },
+        {
+            "id": 5,
+            "matricula": "4546955",
+            "nome": "Jeffrey Burton",
+            "email": "ijohnson@example.org",
+            "telefone": "(130)248-1247",
+            "is_active": true,
+            "quant_possivel": 5
+        },
+        {
+            "id": 6,
+            "matricula": "6114045",
+            "nome": "Andrew Jacobson",
+            "email": "robrien@example.com",
+            "telefone": "001-288-366-2340x60983",
+            "is_active": true,
+            "quant_possivel": 2
+        },
+        {
+            "id": 7,
+            "matricula": "8936835",
+            "nome": "Alexander Davis",
+            "email": "vking@example.org",
+            "telefone": "4103727635",
             "is_active": true,
             "quant_possivel": 1
         },
         {
-            "id": 2,
-            "matricula": "soc2",
-            "nome": "jose",
-            "email": "jose@email.com",
-            "telefone": "88888-8888",
+            "id": 8,
+            "matricula": "2745051",
+            "nome": "James Nelson",
+            "email": "bfuentes@example.com",
+            "telefone": "+1-476-225-2005x5348",
             "is_active": true,
-            "quant_possivel": 0
+            "quant_possivel": 1
+        },
+        {
+            "id": 9,
+            "matricula": "7775985",
+            "nome": "Heather Ross",
+            "email": "rburton@example.net",
+            "telefone": "(690)064-0659",
+            "is_active": true,
+            "quant_possivel": 4
+        },
+        {
+            "id": 10,
+            "matricula": "1167437",
+            "nome": "Kenneth Baker",
+            "email": "wwilson@example.com",
+            "telefone": "001-376-132-7781x5703",
+            "is_active": false,
+            "quant_possivel": 2
+        },
+        {
+            "id": 11,
+            "matricula": "0001",
+            "nome": "Acer 5",
+            "email": "socio1@email.com",
+            "telefone": "888888-8888",
+            "is_active": true,
+            "quant_possivel": 1
         }
     ],
     "emprestimo": [
         {
             "id": 1,
-            "livro": 1,
-            "cliente": 1,
-            "data_emprestimo": "15/07/2022",
+            "livro": 9,
+            "cliente": 11,
+            "data_emprestimo": "20/07/2022",
+            "dias_devolucao": 5,
+            "prazo": "25/07/2022",
+            "devolvido": true,
+            "data_devolucao": "20/07/2022"
+        },
+        {
+            "id": 2,
+            "livro": 9,
+            "cliente": 11,
+            "data_emprestimo": "09/07/2022",
+            "dias_devolucao": 5,
+            "prazo": "18/07/2022",
+            "devolvido": true,
+            "data_devolucao": "20/07/2022"
+        },
+        {
+            "id": 3,
+            "livro": 8,
+            "cliente": 11,
+            "data_emprestimo": "05/07/2022",
             "dias_devolucao": 5,
             "prazo": "19/07/2022",
             "devolvido": false
         },
         {
-            "id": 2,
-            "livro": 1,
-            "cliente": 2,
+            "id": 4,
+            "livro": 9,
+            "cliente": 11,
             "data_emprestimo": "20/07/2022",
-            "dias_devolucao": 5,
-            "prazo": "25/07/2022",
-            "devolvido": false
+            "dias_devolucao": 8,
+            "prazo": "28/07/2022",
+            "devolvido": true,
+            "data_devolucao": "20/07/2022"
         }
     ],
     "genero": [
         {
             "id": 1,
-            "nome": "genero 1",
+            "nome": "Fantasia",
             "is_active": true
         },
         {
             "id": 2,
-            "nome": "gen2",
+            "nome": "Ficção científica",
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "nome": "Distopia",
+            "is_active": true
+        },
+        {
+            "id": 4,
+            "nome": "Ficção Policial",
+            "is_active": true
+        },
+        {
+            "id": 5,
+            "nome": "Horror",
+            "is_active": true
+        },
+        {
+            "id": 6,
+            "nome": "Ficção histórica",
+            "is_active": true
+        },
+        {
+            "id": 7,
+            "nome": "Romance",
+            "is_active": true
+        },
+        {
+            "id": 8,
+            "nome": "Programação",
+            "is_active": true
+        },
+        {
+            "id": 9,
+            "nome": "g",
             "is_active": true
         }
     ]

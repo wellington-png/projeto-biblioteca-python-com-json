@@ -108,8 +108,8 @@ def listar_emprestimos(data):
     for i in data["emprestimo"]:
         print(
             "{:<20}{:<20}{:^17}{:^17}{:<16}".format(
-                data['livro'][i['livro'] - 1]['titulo'],
-                data["cliente"][i['cliente'] - 1]["nome"],
+                data['livro'][i['livro'] - 1]['codigo'],
+                data["cliente"][i['cliente'] - 1]["matricula"],
                 i["data_emprestimo"],
                 i["prazo"],
                 'Devolvido' if i['devolvido'] else 'Pendente',
@@ -133,8 +133,8 @@ def listar_emprestimos_cliente(data, matricula):
         if i['cliente'] == matricula[1]:
             print(
                 "{:<20}{:<20}{:^17}{:^17}{:<16}".format(
-                    data['livro'][i['livro'] - 1]['titulo'],
-                    data["cliente"][i['cliente'] - 1]["nome"],
+                    data['livro'][i['livro'] - 1]['codigo'],
+                    data["cliente"][i['cliente'] - 1]["matricula"],
                     i["data_emprestimo"],
                     i["prazo"],
                     'Devolvido' if i['devolvido'] else 'Pendente',
@@ -163,21 +163,21 @@ def menu_emprestimo(data):
             dias = int(input("Digite a quantidade de dias para devolução: "))
         except ValueError:
             print("Dias inválidos!")
-            menu_emprestimo(data)
+            menu_emprestimo(get_json("data.json"))
         if dias <= 0:
             print("Dias inválidos!")
             menu_emprestimo(data)
-        emprestar_livro(data, cod_livro, matricula, dias)
+        emprestar_livro(get_json("data.json"), cod_livro, matricula, dias)
         
     elif opcao == 2:
         cod_livro = input("Digite o código do livro: ")
         matricula = input("Digite a matricula do cliente: ")
-        devolver_livro(data, cod_livro, matricula)
+        devolver_livro(get_json("data.json"), cod_livro, matricula)
     elif opcao == 3:
-        listar_emprestimos(data)
+        listar_emprestimos(get_json("data.json"))
     elif opcao == 4:
         matricula = input("Digite a matricula do cliente: ")
-        listar_emprestimos_cliente(data, matricula)
+        listar_emprestimos_cliente(get_json("data.json"), matricula)
     elif opcao == 5:
         return True
     else:
@@ -188,8 +188,4 @@ def menu_emprestimo(data):
 
 
 if __name__ == "__main__":
-    # emprestar_livro(get_json("data.json"), "l1", "c1", 5, devolvido=False)
-    listar_emprestimos(get_json("data.json"))
-    # emprestar_livro(get_json("data.json"), "l2", "c1", 5, devolvido=False)
-    # renovar_emprestimo(get_json("data.json"), "c1", "l1", 5)
-    # devolver_livro(get_json("data.json"), 'l1', 'c1')
+    pass

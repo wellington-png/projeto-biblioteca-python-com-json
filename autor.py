@@ -82,4 +82,8 @@ def menu_autor(data):
 
 
 if __name__ == "__main__":
-    cadastrar_autor(get_json("data.json"), "José da Silva")
+    pass
+    # from faker import Faker
+    # fake = Faker()
+    # for i in range(10):
+    #     cadastrar_autor(get_json("data.json"), fake.name())

@@ -8,7 +8,7 @@ def cadastar_cliente(data, matricula, nome, email, telefone, quant_possivel=3):
     data["cliente"].append(
         {
             "id": len(data["cliente"]) + 1,
-            "matricula": matricula,
+            "matricula": str(matricula),
             "nome": nome,
             "email": email,
             "telefone": telefone,
@@ -157,13 +157,3 @@ def menu_socios(data):
 
 if __name__ == "__main__":
     listar_cliente(get_json("data.json"))
-    # atualizar_cliente(data=get_json('data.json'), matricula=7786722, nome='João', email='obowman@example.org', telefone='+5511999999999')
-    # apagar_cliente(data=get_json('data.json'), matricula=7786722)
-    # cadastar_cliente(
-    #     get_json("data.json"),
-    #     "xxx",
-    #     "852147",
-    #     "tes@email.com",
-    #     "8555555",
-    #     quant_possivel=3,
-    # )
