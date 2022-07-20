@@ -1,3 +1,5 @@
+import os
+
 from utils import (
     write_json,
     write_json,
@@ -6,32 +8,37 @@ from utils import (
     get_json,
     is_existe_livro,
 )
+from autor import cadastrar_autor
+from genero import cadastar_genero
 
 
 def cadastrar_livro(data, titulo, autor, genero, quantidade, disponivel, ano, codigo):
+    j = autor
+    i = genero
     autor = is_existe_autor(data, autor)
     genero = is_existe_genero(data, genero)
-    if not genero:
-        print("Não foi possível cadastrar o livro!, pois o genero ainda não existe!")
-        return data
-    if not autor:
-        print("Não foi possível cadastrar o livro!, pois o autor ainda não existe!")
-        return data
 
-    print(autor)
     if quantidade < 0:
         print("Quantidade não pode ser menor que zero!")
         return data
     if disponivel < 0:
         print("Disponivel não pode ser menor que zero!")
         return data
-    if quantidade <= disponivel:
+    if quantidade < disponivel:
         print("Quantidade não pode ser menor ou igual a disponivel!")
         return data
 
     if is_existe_livro(data, codigo):
         print("Livro ja cadastrado!")
         return data
+
+    if not genero:
+        t = cadastar_genero(data, i)
+        genero = [True, t]
+
+    if not autor:
+        a = cadastrar_autor(data, j)
+        autor = [True, a]
 
     data["livro"].append(
         {
@@ -62,18 +69,20 @@ def atualizar_livro(
     ano=None,
     is_active=True,
 ):
+    print(codigo)
     livro = is_existe_livro(data, codigo)
-    print(livro)
     if not livro:
         print("Livro não encontrado!")
         return data
     autor = is_existe_autor(data, autor)
     genero = is_existe_genero(data, genero)
+    print(autor)
+    print(genero)
     if not genero:
-        print("Gênero não encontrado!")
+        print("Não foi possível atualizar o livro!, pois o genero ainda não existe!")
         return data
     if not autor:
-        print("Autor não encontrado!")
+        print("Não foi possível atualizar o livro!, pois o autor ainda não existe!")
         return data
     if quantidade < 0:
         print("Quantidade não pode ser menor que zero!")
@@ -116,73 +125,184 @@ def apagar_livro(data, codigo):
 
 
 def listar_livro(data):
+    print(
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+    )
+    print("-" * 90)
     for i in data["livro"]:
         if i["is_active"] == True:
             print(
-                i["id"],
-                i["titulo"],
-                i["autor"],
-                i["genero"],
-                i["quantidade"],
-                i["disponivel"],
-                i["ano"],
-                i["codigo"],
+                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
+            print("-" * 90)
+
     return data
 
 
 def listar_livro_genero(data, genero):
     genero = is_existe_genero(data, genero)
     if not genero:
-        return data
+        print("Gênero não encontrado!")
+        return False
+    print(
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+    )
+    print("-" * 90)
     for i in data["livro"]:
         if i["is_active"] == True and i["genero"] == genero[1]:
             print(
-                i["id"],
-                i["titulo"],
-                i["autor"],
-                i["genero"],
-                i["quantidade"],
-                i["disponivel"],
-                i["ano"],
-                i["codigo"],
+                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
+            print("-" * 90)
     return data
 
 
 def listar_livro_autor(data, autor):
     autor = is_existe_autor(data, autor)
     if not autor:
-        return data
+        print("Autor não encontrado!")
+        return False
+    print(
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+    )
+    print("-" * 90)
     for i in data["livro"]:
         if i["is_active"] == True and i["autor"] == autor[1]:
             print(
-                i["id"],
-                i["titulo"],
-                i["autor"],
-                i["genero"],
-                i["quantidade"],
-                i["disponivel"],
-                i["ano"],
-                i["codigo"],
+                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
             )
+            print("-" * 90)
     return data
 
 
-def menu_livro():
+def livro_detalhes(data, codigo):
+    livro = is_existe_livro(data, codigo)
+    if not livro:
+        print("Livro não encontrado!")
+        return False
+    print(
+        f"{'ID':<5}{'TÍTULO':<35}{'AUTOR':<7}{'GÊNERO':<8}{'QUANTIDADE':<12}{'DISPONÍVEL':<12}{'ANO':<5}{'CÓDIGO':<8}"
+    )
+    print("-" * 90)
+    for i in data["livro"]:
+        if i["is_active"] == True and i["id"] == livro[1]:
+            print(
+                f' {i["id"]:<5}{i["titulo"]:<35}{i["autor"]:<7}{i["genero"]:<8}{i["quantidade"]:<12}{i["disponivel"]:<12}{i["ano"]:<5}{i["codigo"]:<8}'
+            )
+            print("-" * 90)
+    return data
+
+
+def menu_livro(data):
+
     print("1 - Cadastrar Livro")
     print("2 - Listar Livros")
-    print("3 - Alterar Livro")
-    print("4 - Excluir Livro")
-    print("5 - Voltar")
-    opcao = int(input("Digite a opção desejada: "))
-    return opcao
+    print("3 - Listar Livros por Gênero")
+    print("4 - Listar Livros por Autor")
+    print("5 - Detalhar Livro")
+    print("6 - Alterar Livro")
+    print("7 - Excluir Livro")
+    print("8 - Voltar")
+
+    opcao = input("Digite a opção: ")
+    if opcao.isdigit():
+        opcao = int(opcao)
+
+        if opcao == 1:
+
+            print("Cadastrar Livro")
+            titulo = input("Digite o titulo do livro: ")
+            autor = input("Digite o nome do autor: ")
+            genero = input("Digite o nome do gênero: ")
+            codigo = input("Digite o código do livro: ")
+            try:
+                ano = int(input("Digite o ano do livro: "))
+                quantidade = int(input("Digite a quantidade de livros: "))
+                disponivel = int(input("Digite a quantidade de livros disponíveis: "))
+            except ValueError:
+                print("Erro! Digite apenas números!")
+                menu_livro(data)
+
+            cadastrar_livro(
+                data, titulo, autor, genero, quantidade, disponivel, ano, codigo
+            )
+
+        elif opcao == 2:
+
+            print("Listar Livros")
+            listar_livro(data)
+
+        elif opcao == 3:
+
+            print("Listar Livros por Gênero")
+            genero = input("Digite o nome do gênero: ")
+            listar_livro_genero(data, genero)
+
+        elif opcao == 4:
+
+            print("Listar Livros por Autor")
+            autor = input("Digite o nome do autor: ")
+            listar_livro_autor(data, autor)
+        elif opcao == 5:
+
+            print("Detalhar Livro")
+            codigo = input("Digite o código do livro: ")
+            livro_detalhes(data, codigo)
+        elif opcao == 6:
+
+            print("Alterar Livro")
+            codigo = input("Digite o código do livro: ")
+            l = livro_detalhes(data, codigo)
+            if l:
+                titulo = input("Digite o titulo do livro: ")
+                autor = input("Digite o nome do autor: ")
+                genero = input("Digite o nome do gênero: ")
+                ano = int(input("Digite o ano do livro: "))
+                quantidade = input("Digite a quantidade de livros: ")
+                disponivel = input("Digite a quantidade de livros disponíveis: ")
+
+                if quantidade.isdigit():
+                    quantidade = int(quantidade)
+                else:
+                    print("Quantidade de livros deve ser um número!")
+                    menu_livro(data)
+                if disponivel.isdigit():
+                    disponivel = int(disponivel)
+                else:
+                    print("Quantidade de livros disponíveis deve ser um número!")
+                    menu_livro(data)
+
+                atualizar_livro(
+                    data,
+                    codigo,
+                    titulo=titulo,
+                    autor=autor,
+                    genero=genero,
+                    quantidade=quantidade,
+                    disponivel=disponivel,
+                    ano=ano,
+                )
+            else:
+                menu_livro(data)
+        elif opcao == 7:
+
+            print(f"{' Excluir Livro ':=^80}")
+            codigo = input("Digite o código do livro: ")
+            livro_detalhes(data, codigo)
+            opcao = input("Deseja excluir o livro? (S/N) ")
+            if opcao.upper() == "S":
+                apagar_livro(data, codigo)
+        elif opcao == 8:
+            return data
+        else:
+            print("Opção inválida!")
+        menu_livro(get_json("data.json"))
 
 
 if __name__ == "__main__":
     # cadastrar_livro(get_json('data.json'), 'senhor', 'José', 'filme', 10, 5, 2000, '12983')
     # atualizar_livro(get_json('data.json'), '129y83', 'titulo', 'João', 'filme', 5, 2, 2000, is_active=True)
     # apagar_livro(get_json('data.json'), '12983')
-    # listar_livro(get_json('data.json'))
-    listar_livro_genero(get_json("data.json"), "filme")
-    listar_livro_autor(get_json("data.json"), "José")
+    listar_livro(get_json("data.json"))
+    # listar_livro_genero(get_json("data.json"), "filme")
+    # listar_livro_autor(get_json("data.json"), "José")

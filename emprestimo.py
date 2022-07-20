@@ -102,25 +102,89 @@ def renovar_emprestimo(data, matricula, cod_livro, dias):
 
 
 def listar_emprestimos(data):
+    print(f"\n{' Lista de emprestimos ':=^83}")
+    print(f'{"Livro":<20}{"Socio":<20}{"Data Emprestimo":<17}{"Dias Devolução":<16}{"Prazo":<7}')
+    print(f'{"-"*83}')
     for i in data["emprestimo"]:
         print(
-            "Livro: {}, Cliente: {}, Data Emprestimo: {}, Prazo: {}, Devolvido: {}".format(
-                i["livro"],
-                i["cliente"],
+            "{:<20}{:<20}{:^17}{:^17}{:<16}".format(
+                data['livro'][i['livro'] - 1]['titulo'],
+                data["cliente"][i['cliente'] - 1]["nome"],
                 i["data_emprestimo"],
-                i["prazo"] if i["devolvido"] == False else "Devolvido",
-                i["devolvido"],
+                i["prazo"],
+                'Devolvido' if i['devolvido'] else 'Pendente',
             )
         )
+        print(f'{"-"*83}')
+    
+def listar_emprestimos_cliente(data, matricula):
+    
+    matricula = is_existe_cliente(data, matricula)
+    if not matricula:
+        print("Cliente não encontrado!")
+        return False
+        
+    
+    print(f"\n{' Lista de emprestimos ':=^83}")
+    print(f'{"Livro":<20}{"Socio":<20}{"Data Emprestimo":<17}{"Dias Devolução":<16}{"Prazo":<7}')
+    print(f'{"-"*83}')
+    for i in data["emprestimo"]:
+        
+        if i['cliente'] == matricula[1]:
+            print(
+                "{:<20}{:<20}{:^17}{:^17}{:<16}".format(
+                    data['livro'][i['livro'] - 1]['titulo'],
+                    data["cliente"][i['cliente'] - 1]["nome"],
+                    i["data_emprestimo"],
+                    i["prazo"],
+                    'Devolvido' if i['devolvido'] else 'Pendente',
+                )
+            )
+            print(f'{"-"*83}')
 
 
-def menu_emprestimo():
+def menu_emprestimo(data):
     print("1 - Emprestar Livro")
     print("2 - Devolver Livro")
     print("3 - Listar Emprestimos")
-    print("4 - Voltar")
-    opcao = int(input("Digite a opção desejada: "))
-    return opcao
+    print("4 - Listar Emprestimos Socio")
+    print("5 - Voltar")
+    
+    try:
+        opcao = int(input("Digite a opção: "))
+    except:
+        print("Opção inválida!")
+        menu_emprestimo(data)
+        
+    if opcao == 1:
+        cod_livro = input("Digite o código do livro: ")
+        matricula = input("Digite a matricula do cliente: ")
+        try:
+            dias = int(input("Digite a quantidade de dias para devolução: "))
+        except ValueError:
+            print("Dias inválidos!")
+            menu_emprestimo(data)
+        if dias <= 0:
+            print("Dias inválidos!")
+            menu_emprestimo(data)
+        emprestar_livro(data, cod_livro, matricula, dias)
+        
+    elif opcao == 2:
+        cod_livro = input("Digite o código do livro: ")
+        matricula = input("Digite a matricula do cliente: ")
+        devolver_livro(data, cod_livro, matricula)
+    elif opcao == 3:
+        listar_emprestimos(data)
+    elif opcao == 4:
+        matricula = input("Digite a matricula do cliente: ")
+        listar_emprestimos_cliente(data, matricula)
+    elif opcao == 5:
+        return True
+    else:
+        print("Opção inválida!")
+        return False
+    
+    return menu_emprestimo(get_json("data.json"))
 
 
 if __name__ == "__main__":

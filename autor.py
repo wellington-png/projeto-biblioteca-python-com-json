@@ -14,7 +14,7 @@ def cadastrar_autor(data, nome_completo):
     )
     write_json("data.json", data)
     print("Autor cadastrado com sucesso!")
-    return data
+    return data["autor"][-1]["id"]
 
 
 def atualizar_autor(data, nome, novo_nome, is_active=True):
@@ -35,21 +35,51 @@ def apagar_autor(data, nome):
 
 
 def listar_autor(data, is_active=True):
+    print(f'{"ID":<8}{"NOME":^20}')
+    print("-" * 50)
     for i in data["autor"]:
         if i["is_active"] == is_active:
-            print(i["id"], i["nome_completo"])
+            print(f"#{i['id']:^4} {i['nome_completo']:<20}")
+            print("-" * 50)
+
     return data
 
 
-def menu_autor():
+def menu_autor(data):
     print("1 - Cadastrar Autor")
     print("2 - Listar Autores")
     print("3 - Alterar Autor")
     print("4 - Excluir Autor")
     print("5 - Voltar")
-    opcao = int(input("Digite a opção desejada: "))
-    return opcao
+    try:
+        opcao = input("Digite a opção desejada: ")
+        opcao = int(opcao)
+    except ValueError:
+        print("Opção inválida!")
+        return menu_autor(get_json("data.json"))
+
+    if opcao == 1:
+        print("Cadastrar Autor")
+        nome = input("Digite o nome do autor: ")
+        cadastrar_autor(data, nome)
+    elif opcao == 2:
+        print("Listar Autores")
+        listar_autor(data)
+    elif opcao == 3:
+        print("Alterar Autor")
+        nome = input("Digite o nome do autor a ser alterado: ")
+        novo_nome = input("Digite o novo nome do autor: ")
+        atualizar_autor(data, nome, novo_nome)
+    elif opcao == 4:
+        print("Excluir Autor")
+        nome = input("Digite o nome do autor a ser excluído: ")
+        apagar_autor(data, nome)
+    elif opcao == 5:
+        print("Voltar")
+        return data
+
+    return menu_autor(get_json("data.json"))
 
 
 if __name__ == "__main__":
-    cadastrar_autor(get_json("data.json"), "José")
+    cadastrar_autor(get_json("data.json"), "José da Silva")

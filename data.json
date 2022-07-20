@@ -6,52 +6,68 @@
     "autor": [
         {
             "id": 1,
-            "nome_completo": "well",
+            "nome_completo": "autor 1",
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "nome_completo": "autor2",
             "is_active": true
         }
     ],
     "livro": [
         {
             "id": 1,
-            "titulo": "nao",
+            "titulo": "Livro 1",
             "autor": 1,
             "genero": 1,
             "quantidade": 5,
-            "disponivel": 8,
-            "ano": 2020,
-            "codigo": "l1",
+            "disponivel": 1,
+            "ano": 2222,
+            "codigo": "liv1",
             "is_active": true
         },
         {
             "id": 2,
-            "titulo": "Harry potter",
-            "autor": 1,
-            "genero": 1,
-            "quantidade": 10,
-            "disponivel": 10,
-            "ano": 2000,
-            "codigo": "l2",
+            "titulo": "livro2",
+            "autor": 2,
+            "genero": 2,
+            "quantidade": 1,
+            "disponivel": 1,
+            "ano": 2222,
+            "codigo": "liv2",
+            "is_active": true
+        },
+        {
+            "id": 3,
+            "titulo": "livro5",
+            "autor": 2,
+            "genero": 2,
+            "quantidade": 2,
+            "disponivel": 1,
+            "ano": 2222,
+            "codigo": "gtt",
             "is_active": true
         }
     ],
     "cliente": [
         {
             "id": 1,
-            "matricula": "c1",
-            "nome": "João plc",
-            "email": "wellington@email.com",
-            "telefone": "999999",
+            "matricula": "soc1",
+            "nome": "wellington",
+            "email": "welllington@gmail.com",
+            "telefone": "99999-9999",
             "is_active": true,
-            "quant_possivel": 9
+            "quant_possivel": 1
         },
         {
             "id": 2,
-            "matricula": "c2",
-            "nome": "João",
-            "email": "joao@g.com",
-            "telefone": "12321",
+            "matricula": "soc2",
+            "nome": "jose",
+            "email": "jose@email.com",
+            "telefone": "88888-8888",
             "is_active": true,
-            "quant_possivel": 10
+            "quant_possivel": 0
         }
     ],
     "emprestimo": [
@@ -59,40 +75,30 @@
             "id": 1,
             "livro": 1,
             "cliente": 1,
-            "data_emprestimo": "10/07/2022",
+            "data_emprestimo": "15/07/2022",
             "dias_devolucao": 5,
-            "prazo": "23/07/2022",
-            "devolvido": true,
-            "data_devolucao": "18/07/2022"
-        },
-        {
-            "id": 2,
-            "livro": 2,
-            "cliente": 1,
-            "data_emprestimo": "18/07/2022",
-            "dias_devolucao": 5,
-            "prazo": "23/07/2022",
+            "prazo": "19/07/2022",
             "devolvido": false
         },
         {
-            "id": 3,
+            "id": 2,
             "livro": 1,
-            "cliente": 1,
-            "data_emprestimo": "18/07/2022",
+            "cliente": 2,
+            "data_emprestimo": "20/07/2022",
             "dias_devolucao": 5,
-            "prazo": "23/07/2022",
+            "prazo": "25/07/2022",
             "devolvido": false
         }
     ],
     "genero": [
         {
             "id": 1,
-            "nome": "Ação",
+            "nome": "genero 1",
             "is_active": true
         },
         {
             "id": 2,
-            "nome": "Nada",
+            "nome": "gen2",
             "is_active": true
         }
     ]
